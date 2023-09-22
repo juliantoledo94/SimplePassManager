@@ -2,7 +2,7 @@
 Vue.component("form-contraseña",{
   template:`  <div>
             <h1 class="d-flex justify-content-center m-3 pt-3">Gestor de cuentas</h1>
-            <form v-on:submit.prevent class="container d-flex justify-content-center mt-5">
+            <form v-on:submit.prevent class="container d-flex justify-content-center mt-5 p-5">
             <div>
                 <label for="accountType">Tipo de Cuenta:</label>
                 <select v-model="dato.selectedAccountType" id="accountType">
@@ -20,10 +20,11 @@ Vue.component("form-contraseña",{
                 <label>Contraseña:</label>
                 <input type="password" v-model="dato.password" />
             </div>
-            <div>
-                <button @click="guardar(dato)">Guardar Contraseña</button>
-            </div>
+            
             </form>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary btn rounded" @click="guardar(dato)">Guardar Contraseña</button>
+            </div>
             <mostrar-dato v-bind:arr ="this.arr"></mostrar-dato>
           </div>  
 `,
@@ -82,7 +83,7 @@ Vue.component("mostrar-dato",{
                   <img v-else-if="dato.selectedAccountType === 'steam'" src="img/steam_logo.png" alt="Logo de Steam" />
                   <img v-else="dato.selectedAccountType === 'github'" src="img/github_logo.png" alt="Logo de Github" />
                   <div class="card-body">
-                    <h5 class="card-title">Usuario:{{ dato.user }}</h5>
+                    <h5 class="card-title">Usuario:{{ dato.user | mayuscula }}</h5>
                     <p class="card-text">Contraseña:{{ dato.password }}</p>
                   </div>
                 </div> 
@@ -90,6 +91,13 @@ Vue.component("mostrar-dato",{
             </div>
           </div>
   `,
+  filters: {
+    mayuscula: function (value) {
+      if (!value) return ''
+      value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+    }
+}
  
 
 });
@@ -98,5 +106,6 @@ Vue.component("mostrar-dato",{
 
 var app = new Vue({
     el:"#app",
-    data:{}
+    data:{},
+    
 });
