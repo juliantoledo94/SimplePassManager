@@ -24,6 +24,7 @@ Vue.component("form-contraseña",{
                 <button @click="guardar(dato)">Guardar Contraseña</button>
             </div>
             </form>
+            <mostrar-dato v-bind:arr ="this.arr"></mostrar-dato>
           </div>  
 `,
   data:function(){
@@ -60,7 +61,25 @@ Vue.component("form-contraseña",{
 })
 
 
+Vue.component("mostrar-dato",{
+  props:["arr"],
+  template:`
+          <div>
+            <h2>Datos ingresados</h2>
+            <div v-for="(dato, index) in arr" :key="index">
+              <p>Usuario:{{ dato.user }}</p>
+              <p>Contraseña:{{ dato.password }}</p>
+              <img v-if="dato.selectedAccountType === 'netflix'" src="img/netflix_logo.png" alt="Logo de Netflix" />
+              <img v-else-if="dato.selectedAccountType === 'gmail'" src="img/gmail_logo.png" alt="Logo de Gmail" />
+              <img v-else-if="dato.selectedAccountType === 'steam'" src="img/steam_logo.png" alt="Logo de Steam" />
+              <img v-else="dato.selectedAccountType === 'github'" src="img/github_logo.png" alt="Logo de Github" />
+              <!-- Agrega más casos para otros tipos de cuentas si es necesario -->
+            </div>
+        </div>
+  `,
+ 
 
+});
 
 
 
