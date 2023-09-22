@@ -64,6 +64,7 @@ Vue.component("form-contraseña",{
       this.arr = JSON.parse(localStorage.getItem("local"));
     }
   },
+  
     
 })
 
@@ -83,8 +84,9 @@ Vue.component("mostrar-dato",{
                   <img v-else-if="dato.selectedAccountType === 'steam'" src="img/steam_logo.png" alt="Logo de Steam" />
                   <img v-else="dato.selectedAccountType === 'github'" src="img/github_logo.png" alt="Logo de Github" />
                   <div class="card-body">
-                    <h5 class="card-title">Usuario:{{ dato.user | mayuscula }}</h5>
+                    <h5 class="card-title">{{ dato.user | mayuscula }}</h5>
                     <p class="card-text">Contraseña:{{ dato.password }}</p>
+                    <button class="btn btn-danger" @click="eliminarDato(index)">Eliminar</button>
                   </div>
                 </div> 
               </div>
@@ -97,7 +99,16 @@ Vue.component("mostrar-dato",{
       value = value.toString()
         return value.charAt(0).toUpperCase() + value.slice(1)
     }
-}
+},
+  methods: {
+    eliminarDato(index) {
+      // Elimina el dato del arreglo
+      this.arr.splice(index, 1);
+
+      // Actualiza el Local Storage
+      localStorage.setItem("local", JSON.stringify(this.arr));
+    }
+  },
  
 
 });
