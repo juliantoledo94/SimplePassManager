@@ -1,0 +1,12 @@
+registro contraseñas:
+
+cuentas: gmail , netflix, steam, github 
+
+
+pedir: usuario y contraseña.
+
+
+
+mostrar: foto de plataforma abajo usuario y abajo contraseña y un boton de ver datos ->
+
+-> si selecciona si los revela y si no los deja asi.
