@@ -1,8 +1,8 @@
 
 Vue.component("form-contraseña",{
   template:`  <div>
-            <h2 class="d-flex justify-content-center m-3 pt-3">Agregar Contraseña</h2>
-            <form v-on:submit.prevent>
+            <h1 class="d-flex justify-content-center m-3 pt-3">Gestor de cuentas</h1>
+            <form v-on:submit.prevent class="container d-flex justify-content-center mt-5">
             <div>
                 <label for="accountType">Tipo de Cuenta:</label>
                 <select v-model="dato.selectedAccountType" id="accountType">
@@ -56,7 +56,13 @@ Vue.component("form-contraseña",{
       localStorage.setItem("local",JSON.stringify(this.arr))
       this.dato={selectedAccountType:"",user:"",password:""}
     }
-  }
+  },
+  created: function () {
+    // Cargar los datos del localStorage al iniciar la aplicación
+    if (localStorage.local) {
+      this.arr = JSON.parse(localStorage.getItem("local"));
+    }
+  },
     
 })
 
@@ -64,13 +70,13 @@ Vue.component("form-contraseña",{
 Vue.component("mostrar-dato",{
   props:["arr"],
   template:`
-          <div>
-          <h2>Datos ingresados</h2>
-            <div class="container d-flex flex-wrap">
+          <div class="container">
+          <h2 class="d-flex justify-content-center mt-5 pb-5">Cuentas Guardadas</h2>
+            <div class="container d-flex flex-wrap justify-content-center aling-items-center">
               
               
               <div v-for="(dato, index) in arr" :key="index">
-                <div class="card" style="width: 18rem;">
+                <div class="card card shadow m-2 p-2 card border-rounded card border-dark" style="width: 18rem;">
                   <img v-if="dato.selectedAccountType === 'netflix'" src="img/netflix_logo.png" alt="Logo de Netflix" />
                   <img v-else-if="dato.selectedAccountType === 'gmail'" src="img/gmail_logo.png" alt="Logo de Gmail" />
                   <img v-else-if="dato.selectedAccountType === 'steam'" src="img/steam_logo.png" alt="Logo de Steam" />
@@ -87,25 +93,6 @@ Vue.component("mostrar-dato",{
  
 
 });
-
-/*
-  <div v-for="(dato, index) in arr" :key="index">
-    <div class="card" style="width: 18rem;">
-      <img v-if="dato.selectedAccountType === 'netflix'" src="img/netflix_logo.png" alt="Logo de Netflix" />
-      <img v-else-if="dato.selectedAccountType === 'gmail'" src="img/gmail_logo.png" alt="Logo de Gmail" />
-      <img v-else-if="dato.selectedAccountType === 'steam'" src="img/steam_logo.png" alt="Logo de Steam" />
-      <img v-else="dato.selectedAccountType === 'github'" src="img/github_logo.png" alt="Logo de Github" />
-      <div class="card-body">
-        <h5 class="card-title">Usuario:{{ dato.user }}</h5>
-        <p class="card-text">Contraseña:{{ dato.password }}</p>
-      </div>
-      
-      
-    </div> 
-  </div>
-*/
-
-
 
 
 
