@@ -1,7 +1,7 @@
 
 Vue.component("form-contraseña",{
   template:`  <div>
-            <h1 class="d-flex justify-content-center m-3 pt-3">Gestor de cuentas</h1>
+            <h1 class="d-flex justify-content-center  cherryBomb pb-2 mb-4  border-bottom border-warning">Gestor de cuentas</h1>
             <form v-on:submit.prevent class="container d-flex justify-content-center mt-5 p-5">
             <div>
                 <label for="accountType">Tipo de Cuenta:</label>
